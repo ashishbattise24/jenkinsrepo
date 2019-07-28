@@ -1,0 +1,30 @@
+pipeline {
+         agent any
+         parameters  { 
+          string( name: 'BRANCH', defaultValue: 'master', description: 'git branchname')
+          string(name: 'Version', defaultValue: '1.0', description: 'app version')
+          }
+          stages {
+                       stage('build') {
+                                                steps { 
+                                                               echo "building image"
+                                                               git branch:"${params.BRANCH}", url: "https://github.com/ashishbattise24/jenkinsrepo.git"
+                                                          }
+                                              }
+                        stage('test') {
+                                                steps { 
+                                                            echo "Testing images ........."
+                                                          }
+                                              }
+                        stage('deploy') {
+                                                steps { 
+                                                              echo "Deploying image"                                   
+                                                          }
+                                              }
+                     }
+                       
+                        
+                     
+
+       
+}
